@@ -1,6 +1,6 @@
 // server/server.js
 import express from "express";
-import router from "./src/routes/index.js"; // 파일 확장자를 포함해야 합니다
+import router from "./src/routes/index.js";
 
 const app = express();
 const port = process.env.PORT || 3000;

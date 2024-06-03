@@ -13,10 +13,18 @@ import {
 import { db } from "../firebase/firebaseConfig.js";
 
 // 블로그 글 가져오기
-export const getPosts = async () => {
-    const querySnapshot = await getDocs(db.collection("post"));
-
-    return "test";
+export const getPosts = async (req, res) => {
+    try {
+        const querySnapshot = await getDocs(collection(db, "post"));
+        const posts = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        res.json(posts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Something went wrong" });
+    }
 };
 
 // 블로그 글 업로드

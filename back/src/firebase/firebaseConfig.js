@@ -11,8 +11,11 @@ import {
     doc,
     Timestamp,
 } from "firebase/firestore";
+import { config } from "dotenv";
 
-// Your web app's Firebase configuration
+// 환경변수 가져오기
+config();
+
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
@@ -20,6 +23,7 @@ const firebaseConfig = {
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGE_SENDER_ID,
     appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID,
 };
 
 // Initialize Firebase
