@@ -11,6 +11,9 @@ const nextConfig = {
         // APP_ID: process.env.APP_ID,
         // MEASUREMENT_ID: process.env.MEASUREMENT_ID,
     },
+    webpack: (config, { isServer }) => {
+        return config;
+    },
 };
 
 export default nextConfig;
