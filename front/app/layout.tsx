@@ -2,7 +2,6 @@
 import "./globals.css";
 
 // * components
-import CharkraUiProvider from "./components/provider/CharkraProvider";
 import Protected from "./(protected)/Layout";
 import AppLayout from "./components/layout/Layout";
 
@@ -22,9 +21,7 @@ export default function RootLayout({
         <html lang='en'>
             <body>
                 <Protected>
-                    <CharkraUiProvider>
-                        <AppLayout>{children}</AppLayout>
-                    </CharkraUiProvider>
+                    <AppLayout>{children}</AppLayout>
                 </Protected>
             </body>
         </html>
