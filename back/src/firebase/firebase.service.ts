@@ -1,6 +1,5 @@
 import { Injectable, Inject, Logger } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { IsNotEmpty, IsString } from 'class-validator';
 
 @Injectable()
 export class FirebaseService {

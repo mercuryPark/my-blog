@@ -15,13 +15,19 @@ export class AppController {
   constructor(private readonly firebaseService: FirebaseService) {}
 
   // * 추가
+
   @Post('add')
   async addDocument(@Body() data: CreatePostDto) {
-    const timestamp: any = Date.now();
-    return {
-      ...data,
-      created_at: timestamp, // 현재 시간을 createdAt 필드에 저장합니다.
-    };
+    try {
+      const docId = await this.firebaseService.addDocument('post', data);
+      return {
+        id: docId,
+        ...data,
+        created_at: Date.now(),
+      };
+    } catch (error) {
+      throw new Error('Failed to add document');
+    }
   }
 
   // * 조회
