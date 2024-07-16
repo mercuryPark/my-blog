@@ -18,7 +18,7 @@ const AppLayout = ({ children }: any) => {
             <Header />
             <Contents>
                 <Left />
-                <div className='col-span-4'>{children}</div>
+                <div className='col-span-5'>{children}</div>
             </Contents>
         </div>
     );
