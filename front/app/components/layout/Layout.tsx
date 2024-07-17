@@ -1,24 +1,32 @@
 "use client";
 
-// * install libraries
+// * components
+import Header from "./Header";
+import Left from "./Left";
+import Contents from "./Contents";
+
 import {
     ResizableHandle,
     ResizablePanel,
     ResizablePanelGroup,
 } from "@/components/ui/resizable";
 
-// * components
-import Header from "./Header";
-import Left from "./Left";
-import Contents from "./Contents";
-
 const AppLayout = ({ children }: any) => {
     return (
         <div className='h-[calc(100vh-40px)] p-10'>
             <Header />
+
             <Contents>
-                <Left />
-                <div className='col-span-5'>{children}</div>
+                <ResizablePanelGroup
+                    direction='horizontal'
+                    className='size-full'
+                >
+                    <ResizablePanel defaultSize={20}>
+                        <Left />
+                    </ResizablePanel>
+                    <ResizableHandle withHandle />
+                    <ResizablePanel defaultSize={80}>{children}</ResizablePanel>
+                </ResizablePanelGroup>
             </Contents>
         </div>
     );

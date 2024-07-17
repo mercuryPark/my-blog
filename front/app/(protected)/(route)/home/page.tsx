@@ -1,3 +1,5 @@
+"use client";
+
 // * components
 import HomeLayout from "@/app/components/home/Layout";
 
