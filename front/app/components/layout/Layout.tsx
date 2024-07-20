@@ -15,17 +15,16 @@ const AppLayout = ({ children }: any) => {
     return (
         <div className='h-[calc(100vh-40px)] p-10'>
             <Header />
-
             <Contents>
                 <ResizablePanelGroup
                     direction='horizontal'
                     className='size-full'
                 >
-                    <ResizablePanel defaultSize={20}>
+                    <ResizablePanel defaultSize={15}>
                         <Left />
                     </ResizablePanel>
                     <ResizableHandle withHandle />
-                    <ResizablePanel defaultSize={80}>{children}</ResizablePanel>
+                    <ResizablePanel defaultSize={85}>{children}</ResizablePanel>
                 </ResizablePanelGroup>
             </Contents>
         </div>

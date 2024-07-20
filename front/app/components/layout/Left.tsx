@@ -24,7 +24,7 @@ import {
 
 const Left = () => {
     return (
-        <div className=' h-full col-span-1 truncate'>
+        <div className=' h-full truncate'>
             <div className='p-2 flex justify-center border-b-[1px]'>
                 <Combobox />
             </div>

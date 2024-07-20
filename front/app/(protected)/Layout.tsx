@@ -21,21 +21,24 @@ const Protected = ({ children }: any) => {
 
     // 초기 정보 불러오기
     const fetchPreload = async () => {
-        // await API_GET_BLOG_POST().then((res: any) => {
-        //     setProfile(null);
-        //     setPost(res.data.data);
-        // });
+        await API_GET_BLOG_POST().then((res: any) => {
+            setProfile({ id: 0, name: "master" });
+            setPost(res.data.data);
+        });
     };
 
     useEffect(() => {
-        try {
-            if (profile === null) {
-                fetchPreload();
+        if (initializing) {
+            try {
+                if (profile === null) {
+                    console.log("request");
+                    fetchPreload();
+                }
+            } catch (err) {
+                console.log(err);
+            } finally {
+                setInitializing(false);
             }
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setInitializing(false);
         }
     }, [initializing]);
 

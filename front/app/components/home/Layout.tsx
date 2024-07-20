@@ -13,11 +13,11 @@ const HomeLayout = () => {
     return (
         <div className='h-full'>
             <ResizablePanelGroup direction='horizontal' className=''>
-                <ResizablePanel>
+                <ResizablePanel defaultSize={30}>
                     <ListLayout />
                 </ResizablePanel>
                 <ResizableHandle withHandle />
-                <ResizablePanel>
+                <ResizablePanel defaultSize={70}>
                     <ContentsLayout />
                 </ResizablePanel>
             </ResizablePanelGroup>
