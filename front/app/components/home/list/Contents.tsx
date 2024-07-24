@@ -14,18 +14,23 @@ import {
 } from "@/components/ui/card";
 import { Virtuoso, VirtuosoHandle, GroupedVirtuoso } from "react-virtuoso";
 import { useAtom, useAtomValue } from "jotai";
+import moment from "moment";
+import "moment/locale/ko";
 
 // * state
 import { postState } from "@/app/(protected)/_store/post";
 
 // * components
-import Widget from "./Widget";
+import { Badge } from "@/components/ui/badge";
 
 const ListContents = () => {
     const virtuosoRef = useRef<VirtuosoHandle>(null);
-
     const [posts, setPosts] = useAtom(postState);
     const [postList, setPostList] = useState(posts);
+
+    const handleClickOpenDetailPost = (data: any) => {
+        // 상세보기 전환 해주는 곳
+    };
 
     const postListElement = useCallback(
         (index: any, post: any) => {
@@ -33,17 +38,28 @@ const ListContents = () => {
                 return;
             }
             return (
-                <li>
+                <li
+                    onClick={() => {
+                        handleClickOpenDetailPost(post);
+                    }}
+                    className='cursor-pointer mb-2'
+                >
                     <Card>
-                        <CardHeader>
-                            <CardTitle>Card Title</CardTitle>
-                            <CardDescription>{post.category}</CardDescription>
+                        <CardHeader className='flex flex-row justify-between items-center'>
+                            <CardTitle>
+                                {post.title === undefined
+                                    ? "제목 없음"
+                                    : post.title}
+                            </CardTitle>
+                            <Badge variant='outline'>{post.category}</Badge>
                         </CardHeader>
                         <CardContent>
-                            <p>{post.contents}</p>
+                            <p className='text-sm'>{post.contents}</p>
                         </CardContent>
                         <CardFooter>
-                            <p>Card Footer</p>
+                            <p className='text-gray-400 text-sm'>
+                                {moment(post.created_at).format("llll")}
+                            </p>
                         </CardFooter>
                     </Card>
                 </li>
@@ -53,7 +69,7 @@ const ListContents = () => {
     );
 
     return (
-        <div className='h-full p-2'>
+        <div className='relative h-full p-2'>
             <Virtuoso
                 ref={virtuosoRef}
                 data={posts}
@@ -73,12 +89,11 @@ const ListContents = () => {
                 //         return nextChatrooms();
                 //     }
                 // }}
+
                 useWindowScroll={false}
                 totalCount={posts.length > 0 ? posts.length - 1 : 0}
                 itemContent={(index, post) => postListElement(index, post)}
             />
-
-            <Widget />
         </div>
     );
 };

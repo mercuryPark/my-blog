@@ -5,7 +5,7 @@ import Contents from "./Contents";
 
 const ListLayout = () => {
     return (
-        <div className='h-full'>
+        <div className='h-full relative'>
             <Header />
             <Contents />
         </div>
